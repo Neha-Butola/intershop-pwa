@@ -8,7 +8,7 @@
       {{ 'checkout.payment.sorry_message.text' | translate }}
       <ng-container *ngIf="redirectStatus === 'cancel'">{{
         'checkout.payment.canceled.text' | translate
-      }}</ng-container>
+        }}</ng-container>
       <ng-container *ngIf="redirectStatus === 'failure'">{{ 'checkout.payment.failed.text' | translate }}</ng-container>
     </div>
   </div>
@@ -35,7 +35,7 @@
                   <div *ngIf="!paymentMethod.isRestricted; else displayRestrictions">
                     <p *ngIf="paymentMethod.paymentCosts?.[priceType]">
                       {{ 'checkout.payment.method.charges.text' | translate }}&nbsp;{{
-                        paymentMethod.paymentCosts | ishPrice
+                      paymentMethod.paymentCosts | ishPrice
                       }}&nbsp;
                       <span *ngIf="paymentMethod.paymentCostsThreshold" class="text-muted">
                         <span>-&nbsp;</span>{{ 'checkout.payment.payment_cost_threshold.text' | translate }}
@@ -55,65 +55,40 @@
                 </ng-template>
                 <!-- display radio buttons only for payment methods without parameters -->
                 <ng-container *ngIf="!paymentMethod.parameters && !paymentMethod.isRestricted">
-                  <input
-                    type="radio"
-                    formControlName="name"
-                    class="form-check-input"
-                    [id]="'paymentOption_' + paymentMethod.id"
-                    [value]="paymentMethod.id"
-                  />
+                  <input type="radio" formControlName="name" class="form-check-input"
+                    [id]="'paymentOption_' + paymentMethod.id" [value]="paymentMethod.id" />
                   <label class="form-check-label" [for]="'paymentOption_' + paymentMethod.id">
                     {{ 'checkout.payment.payWith.link' | translate : { '0': paymentMethod.displayName } }}
                   </label>
                 </ng-container>
               </div>
               <!-- Payment parameter form -->
-              <div
-                *ngIf="paymentMethod.parameters?.length"
-                [attr.data-testing-id]="'payment-parameter-form-' + paymentMethod.id"
-              >
+              <div *ngIf="paymentMethod.parameters?.length"
+                [attr.data-testing-id]="'payment-parameter-form-' + paymentMethod.id">
                 <div *ngFor="let paymentInstrument of paymentMethod.paymentInstruments" class="panel section">
                   <div class="form-check col-10 col-md-6 col-lg-8 col-xl-6">
-                    <input
-                      type="radio"
-                      formControlName="name"
-                      class="form-check-input"
-                      [id]="'paymentOption_' + paymentInstrument.id"
-                      [value]="paymentInstrument.id"
-                    />
+                    <input type="radio" formControlName="name" class="form-check-input"
+                      [id]="'paymentOption_' + paymentInstrument.id" [value]="paymentInstrument.id" />
                     <label class="form-check-label" [for]="'paymentOption_' + paymentInstrument.id">
                       {{ paymentInstrument.accountIdentifier }}
                     </label>
-                    <button
-                      type="button"
-                      class="btn btn-link btn-link-action float-right"
-                      (click)="deleteBasketPayment(paymentInstrument)"
-                      data-testing-id="delete-payment-link"
-                    >
+                    <button type="button" class="btn btn-link btn-link-action float-right"
+                      (click)="deleteBasketPayment(paymentInstrument)" data-testing-id="delete-payment-link">
                       {{ 'checkout.payment.method.delete.link' | translate }}
                     </button>
                   </div>
-                  <div
-                    *ngIf="
+                  <div *ngIf="
                       paymentMethod.serviceId === 'Concardis_CreditCard' &&
                       basket.payment &&
                       paymentInstrument.id === basket.payment.paymentInstrument.id
-                    "
-                  >
-                    <ish-payment-concardis-creditcard-cvc-detail
-                      [paymentInstrument]="basket.payment.paymentInstrument"
-                      [paymentMethod]="paymentMethod"
-                    />
+                    ">
+                    <ish-payment-concardis-creditcard-cvc-detail [paymentInstrument]="basket.payment.paymentInstrument"
+                      [paymentMethod]="paymentMethod" />
                   </div>
                 </div>
                 <div class="panel">
-                  <button
-                    *ngIf="!formIsOpen(i)"
-                    type="button"
-                    class="btn btn-link btn-link-action"
-                    (click)="openPaymentParameterForm(i)"
-                    data-testing-id="add-payment-link"
-                  >
+                  <button *ngIf="!formIsOpen(i)" type="button" class="btn btn-link btn-link-action"
+                    (click)="openPaymentParameterForm(i)" data-testing-id="add-payment-link">
                     {{ 'checkout.payment.addPayment.link' | translate }}
                   </button>
                 </div>
@@ -124,50 +99,33 @@
                   </p>
                   <ng-container [ngSwitch]="paymentMethod.serviceId">
                     <ng-template [ngSwitchCase]="'Concardis_CreditCard'">
-                      <ish-payment-concardis-creditcard
-                        [paymentMethod]="paymentMethod"
-                        [activated]="formIsOpen(i)"
+                      <ish-payment-concardis-creditcard [paymentMethod]="paymentMethod" [activated]="formIsOpen(i)"
                         (submitPayment)="createNewPaymentInstrument($event)"
-                        (cancelPayment)="cancelNewPaymentInstrument()"
-                      />
+                        (cancelPayment)="cancelNewPaymentInstrument()" />
                     </ng-template>
 
                     <ng-template [ngSwitchCase]="'Concardis_DirectDebit'">
-                      <ish-payment-concardis-directdebit
-                        [paymentMethod]="paymentMethod"
-                        [activated]="formIsOpen(i)"
+                      <ish-payment-concardis-directdebit [paymentMethod]="paymentMethod" [activated]="formIsOpen(i)"
                         (submitPayment)="createNewPaymentInstrument($event)"
-                        (cancelPayment)="cancelNewPaymentInstrument()"
-                      />
+                        (cancelPayment)="cancelNewPaymentInstrument()" />
                     </ng-template>
 
                     <ng-template [ngSwitchCase]="'CyberSource_CreditCard'">
-                      <ish-payment-cybersource-creditcard
-                        [paymentMethod]="paymentMethod"
-                        [activated]="formIsOpen(i)"
+                      <ish-payment-cybersource-creditcard [paymentMethod]="paymentMethod" [activated]="formIsOpen(i)"
                         (submitPayment)="createNewPaymentInstrument($event)"
-                        (cancelPayment)="cancelNewPaymentInstrument()"
-                      />
+                        (cancelPayment)="cancelNewPaymentInstrument()" />
                     </ng-template>
 
                     <ng-template [ngSwitchCase]="'Payone_CreditCard'">
-                      <ish-payment-payone-creditcard
-                        [paymentMethod]="paymentMethod"
-                        [activated]="formIsOpen(i)"
+                      <ish-payment-payone-creditcard [paymentMethod]="paymentMethod" [activated]="formIsOpen(i)"
                         (submitPayment)="createNewPaymentInstrument($event)"
-                        (cancelPayment)="cancelNewPaymentInstrument()"
-                      />
+                        (cancelPayment)="cancelNewPaymentInstrument()" />
                     </ng-template>
 
                     <ng-template ngSwitchDefault>
-                      <ish-payment-parameter-form
-                        [paymentMethod]="paymentMethod"
-                        [parentForm]="paymentForm"
-                        [submitDisabled]="submitDisabled"
-                        [activated]="formIsOpen(i)"
-                        (cancelPayment)="cancelNewPaymentInstrument()"
-                        (submitPayment)="submitParameterForm()"
-                      />
+                      <ish-payment-parameter-form [paymentMethod]="paymentMethod" [parentForm]="paymentForm"
+                        [submitDisabled]="submitDisabled" [activated]="formIsOpen(i)"
+                        (cancelPayment)="cancelNewPaymentInstrument()" (submitPayment)="submitParameterForm()" />
                     </ng-template>
                   </ng-container>
                 </div>
@@ -178,41 +136,9 @@
       </form>
     </ng-container>
     <ng-template #zeroTotalInfo>
-      <ish-info-message
-        message="{{
+      <ish-info-message message="{{
           'checkout.payment.no_selection_required.info' | translate : { '0': basket.totals?.total | ishPrice }
-        }}"
-        [toast]="false"
-      />
+        }}" [toast]="false" />
     </ng-template>
-  </div>
-  <!-- basket summary -->
-  <div class="col-md-12 col-lg-4 order-summary">
-    <h2>{{ 'checkout.order_details.heading' | translate }}</h2>
-
-    <ish-basket-promotion-code [toast]="false" />
-
-    <ish-basket-address-summary [basket]="basket" />
-    <ish-basket-items-summary [basket]="basket" />
-
-    <div class="cost-summary">
-      <ish-basket-cost-summary [totals]="basket.totals" />
-
-      <button
-        class="btn btn-lg btn-block btn-primary"
-        id="checkoutBtn"
-        type="button"
-        [disabled]="nextDisabled"
-        (click)="goToNextStep()"
-      >
-        {{ 'checkout.button.label' | translate }}
-      </button>
-    </div>
-    <!-- Privacy policy link -->
-    <span
-      [ishServerHtml]="
-        'checkout.widget.security_privacy_policy.link' | translate : { '0': 'page://page.privacyPolicy.pagelet2-Page' }
-      "
-    ></span>
   </div>
 </div>

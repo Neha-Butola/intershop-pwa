@@ -8,13 +8,14 @@ import { CheckoutAddressComponent } from './checkout-address/checkout-address.co
 import { CheckoutAddressAnonymousFormComponent } from './formly/components/checkout-address-anonymous-form/checkout-address-anonymous-form.component';
 
 @NgModule({
-  imports: [SharedModule],
+  imports: [SharedModule,],
   declarations: [
     CheckoutAddressAnonymousComponent,
     CheckoutAddressAnonymousFormComponent,
     CheckoutAddressComponent,
     CheckoutAddressPageComponent,
   ],
+  exports: [CheckoutAddressPageComponent]
 })
 export class CheckoutAddressPageModule {
   static component = CheckoutAddressPageComponent;

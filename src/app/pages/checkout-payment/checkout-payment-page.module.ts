@@ -34,6 +34,10 @@ import { PaymentPayoneCreditcardComponent } from './payment-payone-creditcard/pa
     PaymentPayoneCreditcardComponent,
     PaymentSaveCheckboxComponent,
   ],
+
+  exports: [
+    CheckoutPaymentPageComponent
+  ]
 })
 export class CheckoutPaymentPageModule {
   static component = CheckoutPaymentPageComponent;

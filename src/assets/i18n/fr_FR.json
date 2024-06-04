@@ -771,6 +771,7 @@
   "checkout.pli.freegift.text": "Cadeau gratuit",
   "checkout.pli.price.heading": "Prix",
   "checkout.pli.qty.label": "Qté :",
+  "checkout.progress.checkout.label": "Vérifier",
   "checkout.progress.addresses.label": "Adresses",
   "checkout.progress.payment.label": "Paiement",
   "checkout.progress.receipt.label": "Reçu",

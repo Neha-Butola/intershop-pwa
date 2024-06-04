@@ -771,6 +771,7 @@
   "checkout.pli.freegift.text": "Bonusprodukt",
   "checkout.pli.price.heading": "Preis",
   "checkout.pli.qty.label": "Menge:",
+  "checkout.progress.checkout.label": "Kasse",
   "checkout.progress.addresses.label": "Adressen",
   "checkout.progress.payment.label": "Zahlung",
   "checkout.progress.receipt.label": "Bestätigung",

@@ -32,25 +32,4 @@
       (collapseChange)="shippingCollapsed($event)"
     />
   </div>
-
-  <!-- Cart Summary -->
-  <div class="col-md-12 col-lg-4">
-    <h2>{{ 'checkout.order_details.heading' | translate }}</h2>
-
-    <ish-basket-items-summary [basket]="basket" />
-
-    <div class="cost-summary">
-      <ish-basket-cost-summary [totals]="basket.totals" />
-
-      <button class="btn btn-lg btn-block btn-primary" type="button" [disabled]="nextDisabled" (click)="goToNextStep()">
-        {{ 'checkout.button.label' | translate }}
-      </button>
-    </div>
-    <!-- Privacy policy link -->
-    <span
-      [ishServerHtml]="
-        'checkout.widget.security_privacy_policy.link' | translate : { '0': 'page://page.privacyPolicy.pagelet2-Page' }
-      "
-    ></span>
-  </div>
 </div>

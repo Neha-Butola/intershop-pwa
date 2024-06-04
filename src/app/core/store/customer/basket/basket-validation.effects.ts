@@ -47,7 +47,7 @@ export class BasketValidationEffects {
     [CheckoutStepType.BeforeCheckout]: { scopes: ['Products', 'Promotion', 'Value', 'CostCenter'], route: '/basket' },
     [CheckoutStepType.Addresses]: {
       scopes: ['InvoiceAddress', 'ShippingAddress', 'Addresses'],
-      route: '/checkout/address',
+      route: '/checkout/main',
     },
     [CheckoutStepType.Shipping]: { scopes: ['Shipping'], route: '/checkout/shipping' },
     [CheckoutStepType.Payment]: { scopes: ['Payment'], route: '/checkout/payment' },

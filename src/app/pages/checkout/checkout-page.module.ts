@@ -13,6 +13,7 @@ import { CheckoutShippingPageModule } from '../checkout-shipping/checkout-shippi
 import { CheckoutPageComponent } from './checkout-page.component';
 import { checkoutPageGuard } from './checkout-page.guard';
 import { CheckoutProgressBarComponent } from './checkout-progress-bar/checkout-progress-bar.component';
+import { CheckoutMainModule } from '../checkout-main/checkout-main.module';
 
 const checkoutPageRoutes: Routes = [
   {
@@ -20,6 +21,12 @@ const checkoutPageRoutes: Routes = [
     canActivate: [noServerSideRenderingGuard],
     component: CheckoutPageComponent,
     children: [
+      {
+        path: 'main',
+        canActivate: [checkoutPageGuard],
+        data: { checkoutStep: 1 },
+        component: CheckoutMainModule.component,
+      },
       {
         path: 'address',
         canActivate: [checkoutPageGuard],

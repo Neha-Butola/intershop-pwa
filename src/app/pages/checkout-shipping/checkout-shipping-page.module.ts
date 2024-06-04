@@ -26,6 +26,9 @@ import { ShippingRadioWrapperComponent } from './formly/shipping-radio-wrapper/s
     ShippingInfoComponent,
     ShippingRadioWrapperComponent,
   ],
+  exports: [
+    CheckoutShippingPageComponent
+  ]
 })
 export class CheckoutShippingPageModule {
   static component = CheckoutShippingPageComponent;
